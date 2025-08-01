@@ -1,0 +1,80 @@
+.register-container {
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    padding-top: 20px;
+
+    .logo {
+        font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        font-size: 26px;
+        color: #1877f2;
+        letter-spacing: -1px;
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 12px;
+    }
+
+    .content-left {
+        margin-top: 50px;
+
+        .brand {
+            font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            font-size: 36px;
+            color: #1877f2;
+            letter-spacing: -1px;
+        }
+
+        .detail {
+            font-size: 20px;
+        }
+    }
+
+    .content-right {
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px #0000001a, 0 8px 16px #0000001a;
+        box-sizing: border-box;
+
+        .fb-register-btn {
+            background-color: #1877f2;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            color: #fff;
+            padding: 10px 20px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .fb-register-btn:hover {
+            background-color: #166fe5;
+        }
+
+        .fb-create-btn {
+            background-color: #42b72a;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            color: #fff;
+            padding: 10px 20px;
+            margin-top: 10px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .fb-create-btn:hover {
+            background-color: #36a420;
+        }
+
+        .forgot-password {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
