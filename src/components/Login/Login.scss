@@ -1,19 +1,21 @@
-.red {
-    border: 1px solid red;
-}
-
-.green {
-    border: 1px solid green;
-}
-
-.yellow {
-    border: 1px solid yellow;
-}
-
-
-
 .login-container {
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    padding-top: 20px;
+
+    .logo {
+        font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        font-size: 26px;
+        color: #1877f2;
+        letter-spacing: -1px;
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 12px;
+    }
+
     .content-left {
+        margin-top: 50px;
 
         .brand {
             font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -22,10 +24,17 @@
             color: #1877f2;
             letter-spacing: -1px;
         }
+
+        .detail {
+            font-size: 20px;
+        }
     }
 
     .content-right {
-        border-radius: 10px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px #0000001a, 0 8px 16px #0000001a;
+        box-sizing: border-box;
 
         .fb-login-btn {
             background-color: #1877f2;
@@ -60,5 +69,12 @@
             background-color: #36a420;
         }
 
+        .forgot-password {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 }
