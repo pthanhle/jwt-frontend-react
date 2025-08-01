@@ -1,0 +1,64 @@
+.red {
+    border: 1px solid red;
+}
+
+.green {
+    border: 1px solid green;
+}
+
+.yellow {
+    border: 1px solid yellow;
+}
+
+
+
+.login-container {
+    .content-left {
+
+        .brand {
+            font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            font-size: 36px;
+            color: #1877f2;
+            letter-spacing: -1px;
+        }
+    }
+
+    .content-right {
+        border-radius: 10px;
+
+        .fb-login-btn {
+            background-color: #1877f2;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            color: #fff;
+            padding: 10px 20px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .fb-login-btn:hover {
+            background-color: #166fe5;
+        }
+
+        .fb-create-btn {
+            background-color: #42b72a;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            color: #fff;
+            padding: 10px 20px;
+            margin-top: 10px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .fb-create-btn:hover {
+            background-color: #36a420;
+        }
+
+    }
+}
