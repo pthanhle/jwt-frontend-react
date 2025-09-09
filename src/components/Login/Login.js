@@ -1,11 +1,43 @@
+import { useState } from 'react';
 import './Login.scss'
 import { useHistory } from "react-router-dom";
+import { toast } from 'react-toastify';
+import { loginUser } from '../../services/userService';
 
 const Login = (props) => {
+
+    const [valueLogin, setValueLogin] = useState('');
+    const [password, setPassword] = useState('');
+
+    const defaultobjValidInput = {
+        isValidValueLogin: true,
+        isValidPassword: true,
+    }
+
+    const [objValidInput, setObjValidInput] = useState(defaultobjValidInput)
+
+
     let history = useHistory();
     const handleCreateNewAccount = () => {
         history.push("/register")
     }
+
+    const handleLogin = async () => {
+        setObjValidInput(defaultobjValidInput)
+        if (!valueLogin) {
+            setObjValidInput({ ...defaultobjValidInput, isValidValueLogin: false })
+            toast.error("Please enter your email address or phone number!")
+            return;
+        }
+        if (!password) {
+            setObjValidInput({ ...defaultobjValidInput, isValidPassword: false })
+            toast.error("Please enter your password!")
+            return;
+        }
+
+        let res = await loginUser(valueLogin, password)
+    }
+
     return (
         <div className="login-container">
             <div className="container">
@@ -22,9 +54,21 @@ const Login = (props) => {
                         facebook
                     </div>
                     <div className="content-right col-sm-5 col-12 d-flex flex-column gap-3 py-3">
-                        <input type='text' className='form-control' placeholder='Email address or phone number' />
-                        <input type='password' className='form-control' placeholder='Password' />
-                        <button className='fb-login-btn'>Log In</button>
+                        <input
+                            type='text'
+                            className={objValidInput.isValidValueLogin ? 'form-control' : 'form-control is-invalid'}
+                            placeholder='Email address or phone number'
+                            value={valueLogin}
+                            onChange={(event) => setValueLogin(event.target.value)}
+                        />
+                        <input
+                            type='password'
+                            className={objValidInput.isValidPassword ? 'form-control' : 'form-control is-invalid'}
+                            placeholder='Password'
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
+                        <button className='fb-login-btn' onClick={() => handleLogin()}>Log In</button>
                         <span className='text-center'>
                             <a className="forgot-password" href='#'>Forgot your password?</a>
                         </span>
