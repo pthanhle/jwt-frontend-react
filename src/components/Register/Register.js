@@ -1,25 +1,67 @@
 import './Register.scss'
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const Register = (props) => {
+
     let history = useHistory();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [phone, setPhone] = useState('');
+    const [username, setUsername] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
     const handleLogin = () => {
         history.push("/login")
     }
 
+    const isValidInputs = () => {
+
+        if (!email) {
+            toast.error("Email is required!")
+            return false;
+        }
+
+        let regx = /\S+@\S+\.\S+/;
+        if (!regx.test(email)) {
+            toast.error("Please enter a valid email address!")
+            return false;
+        }
+
+        if (!phone) {
+            toast.error("Phone is required!")
+            return false;
+        }
+
+        if (!password) {
+            toast.error("Password is required!")
+            return false;
+        }
+
+        if (password != confirmPassword) {
+            toast.error("Your Password is not the same!")
+            return false;
+        }
+
+        return true;
+    }
+
+    const handleRegister = () => {
+        let check = isValidInputs();
+        let userData = { email, phone, username, password }
+        console.log(userData)
+    }
+
     useEffect(() => {
-        axios.get("https://reqres.in/api/users?page=2", {
-            headers: {
-                'x-api-key': 'reqres-free-v1',
-                'Content-Type': 'application/json',
-            }
-        }).then(data => {
-            console.log("✅ Dữ liệu:", data);
-        }).catch(err => {
-            console.error("❌ Lỗi:", err.response);
-        });
+        // axios.get("http://localhost:8080/api/test-api", {
+        // }).then(data => {
+        //     console.log("✅ Dữ liệu:", data);
+        // }).catch(err => {
+        //     console.error("❌ Lỗi:", err.response);
+        // });
     }, []);
 
 
@@ -41,25 +83,58 @@ const Register = (props) => {
                     <div className="content-right col-sm-5 col-12 d-flex flex-column gap-3 py-3">
                         <div className='form-group'>
                             <label>Email: </label>
-                            <input type='text' className='form-control' placeholder='Email address' />
+                            <input
+                                type='text'
+                                className='form-control'
+                                placeholder='Email address'
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
+                            />
                         </div>
                         <div className='form-group'>
                             <label>Phone Number: </label>
-                            <input type='text' className='form-control' placeholder='Phone number' />
+                            <input
+                                type='text'
+                                className='form-control'
+                                placeholder='Phone number'
+                                value={phone}
+                                onChange={(event) => setPhone(event.target.value)}
+                            />
                         </div>
                         <div className='form-group'>
                             <label>Username: </label>
-                            <input type='text' className='form-control' placeholder='Username' />
+                            <input
+                                type='text'
+                                className='form-control'
+                                placeholder='Username'
+                                value={username}
+                                onChange={(event) => setUsername(event.target.value)}
+                            />
                         </div>
                         <div className='form-group'>
                             <label>Password: </label>
-                            <input type='password' className='form-control' placeholder='Password' />
+                            <input
+                                type='password'
+                                className='form-control'
+                                placeholder='Password'
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)}
+                            />
                         </div>
                         <div className='form-group'>
                             <label>Re-enter Password: </label>
-                            <input type='password' className='form-control' placeholder='Re-enter Password' />
+                            <input
+                                type='password'
+                                className='form-control'
+                                placeholder='Re-enter Password'
+                                value={confirmPassword}
+                                onChange={(event) => setConfirmPassword(event.target.value)}
+                            />
                         </div>
-                        <button className='fb-register-btn'>Register</button>
+                        <button
+                            className='fb-register-btn'
+                            onClick={() => handleRegister()}
+                        >Register</button>
                         <hr />
                         <div className='text-center'>
                             <button className='fb-create-btn' onClick={() => handleLogin()}>
