@@ -7,14 +7,28 @@ import {
 } from "react-router-dom";
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import Users from './components/ManageUsers/Users';
 import { ToastContainer } from 'react-toastify';
+import { useEffect, useState } from 'react';
+import _ from 'lodash';
 
 function App() {
+
+  const [account, setAccount] = useState({})
+
+  useEffect(() => {
+    let session = sessionStorage.getItem('account')
+    if (session) {
+      setAccount(JSON.parse(session));
+    }
+  }, [])
+
   return (
     <>
       <Router>
         <div className='app-container'>
-          {/* <Nav /> */}
+          {account && !_.isEmpty(account) && account.isAuth && <Nav />}
+
           <Switch>
             <Route path="/news">
               news
@@ -30,6 +44,9 @@ function App() {
             </Route>
             <Route path="/register">
               <Register />
+            </Route>
+            <Route path="/users">
+              <Users />
             </Route>
             <Route path="/" exact>
               home

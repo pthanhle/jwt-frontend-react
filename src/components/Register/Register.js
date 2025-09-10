@@ -1,6 +1,5 @@
 import './Register.scss'
 import { useHistory } from "react-router-dom";
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { registerNewUser } from '../../services/userService';
@@ -52,7 +51,7 @@ const Register = (props) => {
             return false;
         }
 
-        if (password != confirmPassword) {
+        if (password !== confirmPassword) {
             toast.error("Your Password is not the same!")
             setObjCheckInput({ ...defaultValidInput, isValidConfirmPassword: false })
             return false;
