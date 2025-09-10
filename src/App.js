@@ -5,12 +5,9 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
-import Users from './components/ManageUsers/Users';
 import { ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import _ from 'lodash';
+import AppRoute from './routes/AppRoutes';
 
 function App() {
 
@@ -26,35 +23,11 @@ function App() {
   return (
     <>
       <Router>
+        <div className='app-header'>
+          <Nav />
+        </div>
         <div className='app-container'>
-          {account && !_.isEmpty(account) && account.isAuth && <Nav />}
-
-          <Switch>
-            <Route path="/news">
-              news
-            </Route>
-            <Route path="/about">
-              about
-            </Route>
-            <Route path="/contact">
-              contact
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/users">
-              <Users />
-            </Route>
-            <Route path="/" exact>
-              home
-            </Route>
-            <Route path="*">
-              404 NOT FOUND
-            </Route>
-          </Switch>
+          <AppRoute />
         </div>
       </Router>
       <ToastContainer

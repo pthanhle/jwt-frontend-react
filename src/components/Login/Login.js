@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Login.scss'
 import { useHistory } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -44,6 +44,7 @@ const Login = (props) => {
             }
             sessionStorage.setItem('account', JSON.stringify(data))
             history.push('/users')
+            window.location.reload();
             //redux
         }
 
@@ -52,6 +53,21 @@ const Login = (props) => {
             toast.error(res.data.EM)
         }
     }
+
+    const handlePressEnter = (event) => {
+        if (event.key === "Enter") {
+            handleLogin()
+        }
+    }
+
+
+    useEffect(() => {
+        let session = sessionStorage.getItem('account')
+        if (session) {
+            history.push('/');
+            window.location.reload()
+        }
+    }, [])
 
     return (
         <div className="login-container">
@@ -77,11 +93,12 @@ const Login = (props) => {
                             onChange={(event) => setValueLogin(event.target.value)}
                         />
                         <input
-                            type='password'
-                            className={objValidInput.isValidPassword ? 'form-control' : 'form-control is-invalid'}
-                            placeholder='Password'
+                            type="password"
+                            className={objValidInput.isValidPassword ? "form-control" : "form-control is-invalid"}
+                            placeholder="Mật khẩu"
                             value={password}
                             onChange={(event) => setPassword(event.target.value)}
+                            onKeyDown={(event) => handlePressEnter(event)}
                         />
                         <button className='fb-login-btn' onClick={() => handleLogin()}>Log In</button>
                         <span className='text-center'>
