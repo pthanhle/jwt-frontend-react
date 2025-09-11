@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button"
 
 const ModalDelete = (props) => {
     return (
-        <Modal show={props.show} onHide={props.handleClose}>
+        <Modal centered show={props.show} onHide={props.handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Confirm Delete User</Modal.Title>
             </Modal.Header>

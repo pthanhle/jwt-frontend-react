@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import './User.scss'
 import { useHistory } from 'react-router-dom'
-import { getAllUser, deleteUser } from '../../services/userService'
+import { getAllUser, deleteUser, fetchGroup } from '../../services/userService'
 import ReactPaginate from 'react-paginate';
 import { toast } from 'react-toastify';
 import ModalDelete from './ModalDelete';
+import ModalUser from './ModalUser';
 
 const Users = (props) => {
 
@@ -15,6 +16,7 @@ const Users = (props) => {
     const [dataModal, setDataModal] = useState({})
 
     const [isShowModalDelete, setIsShowModalDelete] = useState(false)
+    const [isShowModalUser, setIsShowModalUser] = useState(false)
 
     const fetchUserData = async (page) => {
         let res = await getAllUser(currentPage, currentLimit)
@@ -34,8 +36,13 @@ const Users = (props) => {
 
     }
 
+    const handleEditUser = () => {
+        setIsShowModalUser(true)
+    }
+
     const handleClose = () => {
         setIsShowModalDelete(false)
+        setIsShowModalUser(false)
         setDataModal({})
     }
 
@@ -92,7 +99,7 @@ const Users = (props) => {
                                                 <td>
                                                     <button
                                                         className='btn btn-outline-warning mx-3'
-
+                                                        onClick={() => handleEditUser()}
                                                     >
                                                         Edit
                                                     </button>
@@ -148,6 +155,11 @@ const Users = (props) => {
                 handleClose={handleClose}
                 confirmDeleteUser={confirmDeleteUser}
                 dataModal={dataModal}
+            />
+            <ModalUser
+                title="Create"
+                show={isShowModalUser}
+                handleClose={handleClose}
             />
         </>
     )
