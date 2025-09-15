@@ -40,6 +40,10 @@ const Users = (props) => {
         setIsShowModalUser(true)
     }
 
+    const handleCreateUser = () => {
+        setIsShowModalUser(true)
+    }
+
     const handleClose = () => {
         setIsShowModalDelete(false)
         setIsShowModalUser(false)
@@ -70,7 +74,10 @@ const Users = (props) => {
                     </div>
                     <div className='action'>
                         <button className='btn btn-outline-primary'>Refresh</button>
-                        <button className='btn btn-outline-success'>Add New User</button>
+                        <button
+                            className='btn btn-outline-success'
+                            onClick={() => handleCreateUser()}
+                        >Add New User</button>
                     </div>
                 </div>
                 <div className='user-body'>
@@ -160,6 +167,7 @@ const Users = (props) => {
                 title="Create"
                 show={isShowModalUser}
                 handleClose={handleClose}
+                onUserCreated={fetchUserData}
             />
         </>
     )
