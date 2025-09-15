@@ -36,7 +36,7 @@ const Login = (props) => {
         }
 
         let res = await loginUser(valueLogin, password)
-        if (res && res.data && +res.data.EC === 0) {
+        if (res && +res.EC === 0) {
             //success
             let data = {
                 isAuth: true,
@@ -48,9 +48,9 @@ const Login = (props) => {
             //redux
         }
 
-        if (res && res.data && +res.data.EC !== 0) {
+        if (res && +res.EC !== 0) {
             //error
-            toast.error(res.data.EM)
+            toast.error(res.EM)
         }
     }
 

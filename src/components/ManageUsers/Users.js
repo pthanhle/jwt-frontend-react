@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import './User.scss'
-import { useHistory } from 'react-router-dom'
 import { getAllUser, deleteUser, fetchGroup } from '../../services/userService'
 import ReactPaginate from 'react-paginate';
 import { toast } from 'react-toastify';
@@ -22,9 +21,9 @@ const Users = (props) => {
 
     const fetchUserData = async (page) => {
         let res = await getAllUser(currentPage, currentLimit)
-        if (res && res.data && res.data.EC === 0) {
-            setListUsers(res.data.DT.users)
-            setTotalPages(res.data.DT.totalPages)
+        if (res && res.EC === 0) {
+            setListUsers(res.DT.users)
+            setTotalPages(res.DT.totalPages)
         }
     }
 
@@ -62,12 +61,12 @@ const Users = (props) => {
 
     const confirmDeleteUser = async () => {
         let res = await deleteUser(dataModal)
-        if (res && res.data.EC === 0) {
-            toast.success(res.data.EM)
+        if (res && res.EC === 0) {
+            toast.success(res.EM)
             await fetchUserData();
             setIsShowModalDelete(false)
         } else {
-            toast.error(res.data.EM)
+            toast.error(res.EM)
         }
     }
 

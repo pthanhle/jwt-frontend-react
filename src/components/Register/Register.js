@@ -64,7 +64,7 @@ const Register = (props) => {
         let check = isValidInputs();
         if (check === true) {
             let res = await registerNewUser(email, phone, username, password)
-            let serverData = res.data
+            let serverData = res
             if (+serverData.EC === 0) {
                 toast.success(serverData.EM)
                 history.push('/login')
