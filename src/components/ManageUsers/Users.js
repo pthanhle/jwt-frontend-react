@@ -19,7 +19,7 @@ const Users = (props) => {
     const [isShowModalDelete, setIsShowModalDelete] = useState(false)
     const [isShowModalUser, setIsShowModalUser] = useState(false)
 
-    const fetchUserData = async (page) => {
+    const fetchUserData = async () => {
         let res = await getAllUser(currentPage, currentLimit)
         if (res && res.EC === 0) {
             setListUsers(res.DT.users)

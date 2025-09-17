@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './Login.scss'
 import { useHistory } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { loginUser } from '../../services/userService';
+import { UserContext } from '../../context/UserContext';
 
 const Login = (props) => {
+
+    const { loginContext } = useContext(UserContext)
 
     const [valueLogin, setValueLogin] = useState('');
     const [password, setPassword] = useState('');
@@ -38,13 +41,25 @@ const Login = (props) => {
         let res = await loginUser(valueLogin, password)
         if (res && +res.EC === 0) {
             //success
+            let groupWithRoles = res.DT.data
+            let email = res.DT.email
+            let username = res.DT.username
+            let token = res.DT.access_token
+
             let data = {
                 isAuth: true,
-                token: 'fake token'
+                token,
+                account: {
+                    groupWithRoles,
+                    email,
+                    username
+                }
             }
             sessionStorage.setItem('account', JSON.stringify(data))
+            loginContext(data)
+
             history.push('/users')
-            window.location.reload();
+            // window.location.reload();
             //redux
         }
 
