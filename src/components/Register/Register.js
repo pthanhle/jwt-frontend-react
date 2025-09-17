@@ -1,4 +1,4 @@
-import './Register.scss'
+import './Register.scss';
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -13,12 +13,14 @@ const Register = (props) => {
     const [phone, setPhone] = useState('');
     const [username, setUsername] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
     const defaultValidInput = {
         isValidEmail: true,
         isValidPhone: true,
         isValidPassword: true,
         isValidConfirmPassword: true
     }
+
     const [objCheckInput, setObjCheckInput] = useState(defaultValidInput)
     const handleLogin = () => {
         history.push("/login")
