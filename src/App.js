@@ -1,24 +1,14 @@
 import Nav from './components/Navigation/Nav';
 import './App.scss';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
+  BrowserRouter as Router
+
 } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import AppRoute from './routes/AppRoutes';
 
 function App() {
-
-  const [account, setAccount] = useState({})
-
-  useEffect(() => {
-    let session = sessionStorage.getItem('account')
-    if (session) {
-      setAccount(JSON.parse(session));
-    }
-  }, [])
 
   return (
     <>
