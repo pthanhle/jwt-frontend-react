@@ -35,4 +35,12 @@ const getUserAccount = () => {
     return axios.get(`/account`)
 }
 
-export { registerNewUser, loginUser, getAllUser, deleteUser, fetchGroup, createNewUser, updateCurrentUser, getUserAccount };
+const logoutUser = () => {
+    return axios.post(`/logout`)
+}
+
+export {
+    registerNewUser, loginUser, getAllUser,
+    deleteUser, fetchGroup, createNewUser,
+    updateCurrentUser, getUserAccount, logoutUser
+};
